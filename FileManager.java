@@ -314,32 +314,59 @@ public class FileManager {
 		}
 	}
 
-	public static void sortInventory() throws IOException {
-		ArrayList<Item> temp = new ArrayList<Item>();
+	public static void sortInventory(ArrayList<Item> a, int first, int last) throws IOException {
 		if (sortedByID) {
-			int idCount = 1;
-			while (inventory.size() != 0) {
-				for (int i = 0; i < inventory.size(); i++) {
-					if (inventory.get(i).getID().substring(1).equals("" + idCount)) {
-						temp.add(inventory.get(i));
-						inventory.remove(i);
-						i--;
-					}
-				}
-			}
-			inventory = temp;
+			int g = first;
+	    int h = last;
+	    int mid = (first + last) / 2;
+	    String dividingValue = a.get(mid).getID().substring(1);
+	    do {
+		    while (a.get(g).getID().substring(1).compareTo(dividingValue) < 0) {
+			    g++;
+		    }
+		    while (a.get(h).getID().substring(1).compareTo(dividingValue) > 0) {
+			    h--;
+		    }
+		    if (g <= h) {
+          Item temp = a.get(g);
+	        a.set(g, a.get(h));
+	        a.set(h, temp);
+			    g++;
+			    h--;
+		    }
+	    } while (g < h);
+	    if (h > first) {
+		    sortInventory(a, first, h);
+	    }
+	    if (g < last) {
+		    sortInventory(a, g, last);
+	    }
 		} else {
-			while (inventory.size() != 0) {
-				int minIndex = 0;
-				for (int i = 0; i < inventory.size(); i++) {
-					if (inventory.get(i).getName().indexOf(inventory.get(minIndex).getName()) < 0) {
-						minIndex = i;
-					}
-				}
-				temp.add(inventory.get(minIndex));
-				inventory.remove(minIndex);
-			}
-			inventory = temp;
+			int g = first;
+	    int h = last;
+	    int mid = (first + last) / 2;
+	    String dividingValue = a.get(mid).getName();
+	    do {
+		    while (a.get(g).getName().compareTo(dividingValue) < 0) {
+			    g++;
+		    }
+		    while (a.get(h).getName().compareTo(dividingValue) > 0) {
+			    h--;
+		    }
+		    if (g <= h) {
+          Item temp = a.get(g);
+	        a.set(g, a.get(h));
+	        a.set(h, temp);
+			    g++;
+			    h--;
+		    }
+	    } while (g < h);
+	    if (h > first) {
+		    sortInventory(a, first, h);
+	    }
+	    if (g < last) {
+		    sortInventory(a, g, last);
+	    }
 		}
 	}
 
