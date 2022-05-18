@@ -382,9 +382,48 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
+			for (Item i : currentUser.getRentals()) {
+				nButtons++;
+				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
+				if (nButtons >= start && nButtons <= end) {
+					buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+					yVal += yDer;
+					container.add(buttons.get(nButtons));
+					buttons.get(nButtons).addActionListener(this);
+				}
+			}
+			actionButtons.add(new JButton("<"));
+			actionButtons.get(0).setBounds(50, yVal, 50, 30);
+			actionButtons.add(new JButton(">"));
+			actionButtons.get(1).setBounds(300, yVal, 50, 30);
+			actionButtons.add(new JButton("HOME"));
+			actionButtons.get(2).setBounds(125, yVal, 150, 30);
+			container.add(actionButtons.get(0));
+			container.add(actionButtons.get(1));
+			container.add(actionButtons.get(2));
+			actionButtons.get(0).addActionListener(this);
+			actionButtons.get(1).addActionListener(this);
+			actionButtons.get(2).addActionListener(this);
+		}
+	}
+
+	/**
+	 * rentItem() method to create the button objects onto the GUI
+	 */
+	public void rentItem(int page) {
+		if (windowType.equals("Rent Item")) {
+			otherPageNumber = page;
+			container.setLayout(null);
+			int nButtons = -1;
+			int xVal = 50;
+			int yVal = 20;
+			int wVal = 300;
+			int yDer = 40;
+			int start = 7 * (page - 1);
+			int end = start + 6;
 			ArrayList<Item> temp = new ArrayList<Item>();
 			for (Item i : FileManager.getInventory()) {
-				if (i.getID().equals(currentUser.getID())) {
+				if (i.getIsClaimedBy().equals("null")) {
 					temp.add(i);
 				}
 			}
@@ -553,18 +592,10 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(1)) { // Rentals
-					/*
-					 * String s = "Currently Rented Items:"; if (currentUser.getRentals() == null) {
-					 * JOptionPane.showMessageDialog(this, s); } else { ArrayList<Item>
-					 * currentRentals = currentUser.getRentals(); for (Item i : currentRentals) { s
-					 * += "\n" + i.getID() + " - " + i.getName(); }
-					 * JOptionPane.showMessageDialog(this, s); }
-					 */
-
+					otherPageNumber = 1;
 					GUIManager yourRentals = new GUIManager();
 					yourRentals.openWindow("Your Rentals");
 					yourRentals.yourRentals(otherPageNumber);
-
 				}
 
 				if (e.getSource() == buttons.get(2)) { // List Items
@@ -574,7 +605,10 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(3)) { // Rent
-					JOptionPane.showMessageDialog(this, "Rent Button Not Implemented Yet!");
+					otherPageNumber = 1;
+					GUIManager rentItem = new GUIManager();
+					rentItem.openWindow("Rent Item");
+					rentItem.rentItem(otherPageNumber);
 				}
 
 				if (e.getSource() == buttons.get(4)) { // Return
@@ -590,10 +624,17 @@ public class GUIManager extends JFrame implements ActionListener {
 				for (int i = 0; i < FileManager.getInventorySize(); i++) {
 					if (e.getSource() == buttons.get(i)) {
 						Item item = FileManager.getInventory().get(i);
+						String claimedBy = "";
+						if (item.getIsClaimedBy().equals("null")) {
+							claimedBy = "Nobody has claimed this yet.";
+						} else {
+							claimedBy = item.getIsClaimedBy() + " - "
+									+ FileManager.findUserID(item.getIsClaimedBy()).getUsername();
+						}
 						JOptionPane.showMessageDialog(this,
 								"ID: " + item.getID() + "\nName of Item: " + item.getName() + "\nType of Item: "
 										+ item.getType() + "\nDescription: " + item.getDescription()
-										+ "\nIs Claimed By: " + item.getIsClaimedBy());
+										+ "\nIs Claimed By: " + claimedBy);
 					}
 				}
 				if (e.getSource() == actionButtons.get(0) && pageNumber >= 2) {
@@ -634,11 +675,18 @@ public class GUIManager extends JFrame implements ActionListener {
 				for (int i = 0; i < FileManager.getInventorySize(); i++) {
 					if (e.getSource() == buttons.get(i)) {
 						Item item = FileManager.removeItem(i);
+						String claimedBy = "";
+						if (item.getIsClaimedBy().equals("null")) {
+							claimedBy = "Nobody has claimed this yet.";
+						} else {
+							claimedBy = item.getIsClaimedBy() + " - "
+									+ FileManager.findUserID(item.getIsClaimedBy()).getUsername();
+						}
 						setVisible(false);
 						JOptionPane.showMessageDialog(this,
 								"THE FOLLOWING ITEM WAS REMOVED: \n\nID: " + item.getID() + "\nName of Item: "
 										+ item.getName() + "\nType of Item: " + item.getType() + "\nDescription: "
-										+ item.getDescription() + "\nIs Claimed By: " + item.getIsClaimedBy());
+										+ item.getDescription() + "\nIs Claimed By: " + claimedBy);
 						pageNumber = 1;
 						setVisible(false);
 					}
@@ -722,9 +770,45 @@ public class GUIManager extends JFrame implements ActionListener {
 				// RENTALS LIST WINDOW
 			} else if (windowType.equals("Your Rentals")) {
 
+				for (int i = 0; i < currentUser.getRentals().size(); i++) {
+					if (e.getSource() == buttons.get(i)) {
+						Item item = currentUser.getRentals().get(i);
+						String claimedBy = "";
+						if (item.getIsClaimedBy().equals("null")) {
+							claimedBy = "Nobody has claimed this yet.";
+						} else {
+							claimedBy = item.getIsClaimedBy() + " - "
+									+ FileManager.findUserID(item.getIsClaimedBy()).getUsername();
+						}
+						JOptionPane.showMessageDialog(this,
+								"ID: " + item.getID() + "\nName of Item: " + item.getName() + "\nType of Item: "
+										+ item.getType() + "\nDescription: " + item.getDescription()
+										+ "\nIs Claimed By: " + claimedBy);
+					}
+				}
+				if (e.getSource() == actionButtons.get(0) && otherPageNumber >= 2) {
+					GUIManager yourRentals = new GUIManager();
+					yourRentals.openWindow("Your Rentals");
+					otherPageNumber--;
+					yourRentals.yourRentals(otherPageNumber);
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(1)
+						&& otherPageNumber - 1 < (currentUser.getRentals().size() - 1) / 7) {
+					GUIManager yourRentals = new GUIManager();
+					yourRentals.openWindow("Your Rentals");
+					otherPageNumber++;
+					yourRentals.yourRentals(otherPageNumber);
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(2)) {
+					setVisible(false);
+				}
+
+				// RENT ITEM WINDOW
+			} else if (windowType.equals("Rent Item")) {
+
 				ArrayList<Item> temp = new ArrayList<Item>();
 				for (Item i : FileManager.getInventory()) {
-					if (i.getID().equals(currentUser.getID())) {
+					if (i.getIsClaimedBy().equals("null")) {
 						temp.add(i);
 					}
 				}
@@ -732,24 +816,29 @@ public class GUIManager extends JFrame implements ActionListener {
 				for (int i = 0; i < temp.size(); i++) {
 					if (e.getSource() == buttons.get(i)) {
 						Item item = temp.get(i);
+						String claimedBy = "You are claiming this!";
 						JOptionPane.showMessageDialog(this,
-								"ID: " + item.getID() + "\nName of Item: " + item.getName() + "\nType of Item: "
-										+ item.getType() + "\nDescription: " + item.getDescription()
-										+ "\nIs Claimed By: " + item.getIsClaimedBy());
+								"YOU HAVE RENTED THE ITEM:\n\nID: " + item.getID() + "\nName of Item: " + item.getName()
+										+ "\nType of Item: " + item.getType() + "\nDescription: "
+										+ item.getDescription() + "\nIs Claimed By: " + claimedBy);
+						currentUser.addRental(item);
+						item.setIsClaimedBy(currentUser.getID());
+						FileManager.pushInventory();
+						FileManager.pushUsers();
+						setVisible(false);
 					}
 				}
-				if (e.getSource() == actionButtons.get(0) && pageNumber >= 2) {
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Your Rentals");
+				if (e.getSource() == actionButtons.get(0) && otherPageNumber >= 2) {
+					GUIManager rentItem = new GUIManager();
+					rentItem.openWindow("Rent Item");
 					otherPageNumber--;
-					itemList.itemList(otherPageNumber);
+					rentItem.rentItem(otherPageNumber);
 					setVisible(false);
-				} else if (e.getSource() == actionButtons.get(1)
-						&& otherPageNumber - 1 < (FileManager.getInventorySize() - 1) / 7) {
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Your Rentals");
+				} else if (e.getSource() == actionButtons.get(1) && otherPageNumber - 1 < (temp.size() - 1) / 7) {
+					GUIManager rentItem = new GUIManager();
+					rentItem.openWindow("Rent Item");
 					otherPageNumber++;
-					itemList.itemList(otherPageNumber);
+					rentItem.rentItem(otherPageNumber);
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(2)) {
 					setVisible(false);

@@ -107,11 +107,20 @@ public class Item {
 	public static int getLastID() {
 		return lastID;
 	}
+	
+	/**
+	 * setIsClaimedBy method to change the claimed user ids
+	 * 
+	 * @param id - int of the user ID
+	 */
+	public void setIsClaimedBy(String id) {
+		isClaimedBy = id;
+	}
 
 	/**
 	 * setLastID method to change the ID numbers
 	 * 
-	 * @param id - int of the student ID
+	 * @param id - int of the last user ID
 	 */
 	public static void setLastID(int id) {
 		lastID = id;

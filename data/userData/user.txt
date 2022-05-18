@@ -1,9 +1,9 @@
 =====> USER MANAGER
-<IDS>: 2
+<IDS>: 3
 U1
 dummy
 dummypass
-[I1], [I3]
+[I1], [I3], [I17]
 U2
 UserTest
 UserPassword

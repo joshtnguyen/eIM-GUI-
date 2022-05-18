@@ -272,6 +272,20 @@ public class FileManager {
 	 * @param source - the String which is the name of the file
 	 */
 
+	public static void pushUsers() throws IOException {
+		try {
+			pushUsers(FileManager.USER_DIRECTORY + "user");
+		} catch (Exception e) {
+			return;
+		}
+	}
+	
+	/**
+	 * pushUsers method to push data into text file when the program is closed
+	 * 
+	 * @param source - the String which is the name of the file
+	 */
+
 	public static void pushUsers(String source) throws IOException {
 		try {
 			FileWriter w = new FileWriter(source + ".txt");
@@ -364,6 +378,15 @@ public class FileManager {
 	public static User findUser(String username) {
 		for (User u : users) {
 			if (u.getUsername().equals(username)) {
+				return u;
+			}
+		}
+		return null;
+	}
+	
+	public static User findUserID(String id) {
+		for (User u : users) {
+			if (u.getID().equals(id)) {
 				return u;
 			}
 		}
