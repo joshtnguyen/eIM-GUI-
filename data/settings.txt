@@ -1,0 +1,7 @@
+# DO NOT CHANGE THE TRIANGLE BRACKETS <>. 
+# TO MODIFY A SETTING, MODIFY THE CONTENTS PAST THE EQUAL SIGN.
+
+<WindowTitle> = eInventory
+<Version> = v2022.05.13
+
+# Programmed by Josh Nguyen, Hardeep Kainth, Adrian Rozario, Steven Luo, Nemerjit Singh, Arul Aravinthan

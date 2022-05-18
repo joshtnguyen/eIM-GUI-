@@ -1,0 +1,7 @@
+=====> INVENTORY MANAGER
+<IDS>: 1
+I1
+Bagel
+Food
+yum
+null

@@ -1,0 +1,5 @@
+# Add all ADMINISTRATOR USER LOGIN INFORMATION here!
+# Look below and keep the format.
+<U: JTN, P: JoshTNguyen> (Josh Nguyen)
+<U: HSK, P: HardeepSKainth> (Hardeep Kainth)
+<U: AFR, P: VarunBozo> (Arul Aravinthan)
