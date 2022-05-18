@@ -13,7 +13,6 @@ public class Main {
 
 		FileManager.pullInventory();
 		FileManager.pullUsers();
-		System.out.println(FileManager.getUsers());
 		// adminLogin();
 		GUIManager loginWindow = new GUIManager();
 		loginWindow.openWindow("Login");

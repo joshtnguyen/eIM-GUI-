@@ -278,10 +278,9 @@ public class FileManager {
 			String s = "=====> USER MANAGER\n<IDS>: " + User.getUserIDs() + "\n";
 			if (users != null) {
 				for (User u : users) {
-					s += u.getID() + "\n" + u.getUsername() + "\n" + u.getPassword();
-					if (u.getRentals() != null || u.getRentals().isEmpty()) {
+					s += u.getID() + "\n" + u.getUsername() + "\n" + u.getPassword() + "\n";
+					if (u.getRentals() != null && u.getRentals().size() != 0) {
 						ArrayList<Item> userRentals = u.getRentals();
-						System.out.println(u + "\n" + u.getRentals());
 						for (int i = 0; i < userRentals.size() - 1; i++) {
 							s += "[" + userRentals.get(i).getID() + "], ";
 						}
@@ -289,7 +288,6 @@ public class FileManager {
 					} else {
 						s += "\n";
 					}
-					s += "\n";
 				}
 			}
 			System.out.println(s);
@@ -297,7 +295,7 @@ public class FileManager {
 			w.close();
 
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace()[0].getLineNumber() + " - " + e.getMessage());
+			//System.out.println(e.getStackTrace()[0].getLineNumber() + " - " + e.getMessage());
 			return;
 		}
 	}

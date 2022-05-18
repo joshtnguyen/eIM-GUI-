@@ -1,0 +1,10 @@
+=====> USER MANAGER
+<IDS>: 2
+U1
+dummy
+dummypass
+[I1], [I3]
+U2
+UserTest
+UserPassword
+
