@@ -164,7 +164,7 @@ public class FileManager {
 	/**
 	 * pullInventory method to get the inventory data from the text file
 	 */
-	public static void pullInventory() throws FileNotFoundException {
+	public static void pullInventory() throws FileNotFoundException, IOException {
 		try {
 			pullInventory(INVENTORY_DIRECTORY + "list.txt");
 		} catch (Exception ignore) {
@@ -177,7 +177,7 @@ public class FileManager {
 	 * 
 	 * @param source - String of the inventory
 	 */
-	public static void pullInventory(String source) throws FileNotFoundException {
+	public static void pullInventory(String source) throws FileNotFoundException, IOException {
 		try {
 			sortedByID = true;
 			File file = new File(source);
@@ -211,12 +211,38 @@ public class FileManager {
 						inventory.clear();
 					}
 					inventory.add(new Item(l1, l2, l3, l4, l5));
-					pushInventory();
+					
 				}
 
 			} while (!l1.equals("=====> USER MANAGER"));
+
 		} catch (Exception e) {
-			return;
+			pushInventory();
+      if (!source.equals(INVENTORY_DIRECTORY + "list.txt")) {
+        int lastID = Item.getLastID();
+        for (User u : users) {
+          ArrayList<Item> currentRentals = u.getRentals();
+          for (int i = 0; i < currentRentals.size(); i++) {
+            if (Integer.parseInt(currentRentals.get(i).getID().substring(1)) > lastID) {
+              currentRentals.remove(i);
+              i--;
+            }
+          }
+        }
+        for (Item i : inventory) {
+          i.setIsClaimedBy("null");
+        }
+        for (User u : users) {
+          for (Item i : u.getRentals()) {
+            i.setIsClaimedBy(u.getID());
+          }
+        }
+        pushUsers();
+        pushInventory();
+      }
+
+
+      return;
 		}
 	}
 
