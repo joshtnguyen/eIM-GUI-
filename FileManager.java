@@ -47,9 +47,8 @@ public class FileManager {
 	/**
 	 * addItem method to add an item to the inventory with user input
 	 * 
-	 * @param i - the item to add to the 
-inventory
-   * @ throws IOException
+	 * @param i - the item to add to the inventory
+   * @throws IOException
 	 */
 	public static void addItem(Item i) throws IOException {
 		inventory.add(i);
@@ -69,7 +68,7 @@ inventory
 	 * removeItem method to remove and return an item from the inventory
 	 * @param index - index of item to remove
 	 * @return item - item that was to be removed
-   * @ throws IOException
+   * @throws IOException
 	 */
 
 	public static Item removeItem(int index) throws IOException {
@@ -96,8 +95,7 @@ inventory
 	}
 
 	/**
-	 * pushInventory method to update the inventory text file with the current
-	 * inventory
+	 * pushInventory method to update the inventory text file with the current inventory
 	 * 
 	 * @param source - String of the old inventory to be updated
    * @throws IOException
@@ -315,8 +313,7 @@ inventory
 	}
 
 	/**
-	 * sortInventory sorts the Item inventory according to ID numbers or
-	 * lexographically using quicksort
+	 * sortInventory sorts the Item inventory according to ID numbers or lexographically using quicksort
 	 * 
 	 * @param ArrayList<Item> - ArrayList to be sorted
 	 * @param first           - first index
@@ -383,9 +380,7 @@ inventory
 	}
 
 	/**
-	 * addUser method checks if the user's username has not already been taken and
-	 * if it hasn't, it adds the user's username and password to the corresponding
-	 * document and the * list
+	 * addUser method checks if the user's username has not already been taken and if it hasn't, it adds the user's username and password to the corresponding document and the * list
 	 *
 	 * @param username - String that is the username of the new user
 	 * @param password - String that is the password for the new user's username
@@ -417,8 +412,7 @@ inventory
 	}
 
 	/**
-	 * findItem method to return the index of the item with the id selected by the
-	 * user
+	 * findItem method to return the index of the item with the id selected by the user
 	 *
 	 * @param id - String of the id the user wants
    * @return index of item
@@ -433,8 +427,7 @@ inventory
 	}
 
 	/**
-	 * findUser method to return the user object with the same username as the one
-	 * selected by the user
+	 * findUser method to return the user object with the same username as the one selected by the user
 	 *
 	 * @param username - username selected by the user
 	 *
@@ -450,8 +443,7 @@ inventory
 	}
 
 	/**
-	 * findUserID method to return the user object with the same id as the one
-	 * selected by the user
+	 * findUserID method to return the user object with the same id as the one selected by the user
 	 *
 	 * @param id - String id selected by the user
 	 *

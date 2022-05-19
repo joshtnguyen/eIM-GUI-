@@ -51,7 +51,7 @@ public class User {
 	/**
 	 * findUser() method to take in a String and return which user object has the id
 	 * 
-   * @param userID
+   * @param userID - the id of the user
 	 * @return user object - null if doesn't exist and User object if it does
 	 */
 
