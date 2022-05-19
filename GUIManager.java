@@ -577,6 +577,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					for (char c : passwordField.getPassword()) {
 						pass += c;
 					}
+					FileManager.sortByID();
+					FileManager.pullInventory();
+					FileManager.pullUsers();
 					if (pass.length() <= 5) {
 						JOptionPane.showMessageDialog(this, "The PASSWORD length must be more than 5 characters long.");
 					} else if (userField.getText().equals("") || pass.equals("")) {
@@ -681,11 +684,11 @@ public class GUIManager extends JFrame implements ActionListener {
 				if (e.getSource() == buttons.get(6)) { // Quit
 					// System.exit(0);
 					FileManager.sortByID();
+					setVisible(false);
 					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
 					JOptionPane.showMessageDialog(this, "You've been signed out.");
-					setVisible(false);
 				}
 
 				// USER WINDOW
@@ -738,11 +741,11 @@ public class GUIManager extends JFrame implements ActionListener {
 				if (e.getSource() == buttons.get(5)) { // Quit
 					// System.exit(0);
 					FileManager.sortByID();
+					setVisible(false);
 					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
 					JOptionPane.showMessageDialog(this, "You've been signed out.");
-					setVisible(false);
 				}
 
 				// ITEM LIST WINDOW

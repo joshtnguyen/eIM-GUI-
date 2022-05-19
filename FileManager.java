@@ -181,6 +181,7 @@ inventory
 			} while (!l1.equals("=====> USER MANAGER"));
 
 		} catch (Exception e) {
+			pullUsers();
 			pushInventory();
 			if (!source.equals(INVENTORY_DIRECTORY + "list.txt")) {
 				int lastID = Item.getLastID();
@@ -201,6 +202,7 @@ inventory
 						findItem(i.getID()).setIsClaimedBy(u.getID());
 					}
 				}
+				pullUsers();
 				pushUsers();
 				pushInventory();
 			}
