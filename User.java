@@ -105,6 +105,20 @@ public class User {
 			rentals.add(item);
 		}
 	}
+	
+	/**
+	 * removeRental() method to remove a rental;
+	 * 
+	 * @param id - Item ID to remove as a rental
+	 */
+	public void removeRental(String id) {
+		for (int i = 0; i < rentals.size(); i++) {
+			if (id.equals(rentals.get(i).getID())) {
+				rentals.remove(i);
+				i--;
+			}
+		}
+	}
 
 	/**
 	 * getUserIDs() method to set a user's ID;

@@ -240,7 +240,6 @@ public class FileManager {
 						users.clear();
 					}
 					users.add(new User(l2, l3, l1));
-					System.out.println(users.size());
 					if (!l4.equals("null")) {
 						int firstIndex = l4.indexOf("[");
 						int lastIndex = l4.indexOf("]");
@@ -304,7 +303,6 @@ public class FileManager {
 					}
 				}
 			}
-			System.out.println(s);
 			w.write(s);
 			w.close();
 
@@ -422,6 +420,10 @@ public class FileManager {
 
 	public static ArrayList<User> getUsers() {
 		return users;
+	}
+	
+	public static void toggleSort() {
+		sortedByID = !sortedByID;
 	}
 
 }

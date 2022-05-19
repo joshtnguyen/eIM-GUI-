@@ -170,13 +170,17 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.add(new JButton(">"));
 			actionButtons.get(1).setBounds(300, yVal, 50, 30);
 			actionButtons.add(new JButton("HOME"));
-			actionButtons.get(2).setBounds(125, yVal, 150, 30);
+			actionButtons.get(2).setBounds(120, yVal, 73, 30);
+			actionButtons.add(new JButton("SORT"));
+			actionButtons.get(3).setBounds(207, yVal, 73, 30);
 			container.add(actionButtons.get(0));
 			container.add(actionButtons.get(1));
 			container.add(actionButtons.get(2));
+			container.add(actionButtons.get(3));
 			actionButtons.get(0).addActionListener(this);
 			actionButtons.get(1).addActionListener(this);
 			actionButtons.get(2).addActionListener(this);
+			actionButtons.get(3).addActionListener(this);
 		}
 	}
 
@@ -240,55 +244,17 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.add(new JButton(">"));
 			actionButtons.get(1).setBounds(300, yVal, 50, 30);
 			actionButtons.add(new JButton("HOME"));
-			actionButtons.get(2).setBounds(125, yVal, 150, 30);
+			actionButtons.get(2).setBounds(120, yVal, 73, 30);
+			actionButtons.add(new JButton("SORT"));
+			actionButtons.get(3).setBounds(207, yVal, 73, 30);
 			container.add(actionButtons.get(0));
 			container.add(actionButtons.get(1));
 			container.add(actionButtons.get(2));
+			container.add(actionButtons.get(3));
 			actionButtons.get(0).addActionListener(this);
 			actionButtons.get(1).addActionListener(this);
 			actionButtons.get(2).addActionListener(this);
-		}
-	}
-
-	/**
-	 * userLogin method to display the GUI
-	 */
-	public void userLogin() {
-		if (windowType.equals("User Panel")) {
-			container.setLayout(null);
-			int nButtons = 0;
-			int xVal = 50;
-			int yVal = 20;
-			int wVal = 300;
-			int yDer = 40;
-			buttons.add(new JButton("Profile"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			buttons.add(new JButton("Rentals"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			buttons.add(new JButton("List Inventory"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			buttons.add(new JButton("Rent"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			buttons.add(new JButton("Return"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			buttons.add(new JButton("Quit"));
-			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
-			nButtons++;
-			yVal += yDer;
-			for (JButton b : buttons) {
-				container.add(b);
-				b.addActionListener(this);
-			}
+			actionButtons.get(3).addActionListener(this);
 		}
 	}
 
@@ -367,6 +333,48 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(2).addActionListener(this);
 		}
 	}
+	
+	/**
+	 * userLogin method to display the GUI
+	 */
+	public void userLogin() {
+		if (windowType.equals("User Panel")) {
+			container.setLayout(null);
+			int nButtons = 0;
+			int xVal = 50;
+			int yVal = 20;
+			int wVal = 300;
+			int yDer = 40;
+			buttons.add(new JButton("Profile"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			buttons.add(new JButton("Rentals"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			buttons.add(new JButton("List Inventory"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			buttons.add(new JButton("Rent"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			buttons.add(new JButton("Return"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			buttons.add(new JButton("Quit"));
+			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+			nButtons++;
+			yVal += yDer;
+			for (JButton b : buttons) {
+				container.add(b);
+				b.addActionListener(this);
+			}
+		}
+	}
 
 	/**
 	 * yourRentals() method to create the button objects onto the GUI
@@ -397,13 +405,17 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.add(new JButton(">"));
 			actionButtons.get(1).setBounds(300, yVal, 50, 30);
 			actionButtons.add(new JButton("HOME"));
-			actionButtons.get(2).setBounds(125, yVal, 150, 30);
+			actionButtons.get(2).setBounds(120, yVal, 73, 30);
+			actionButtons.add(new JButton("SORT"));
+			actionButtons.get(3).setBounds(207, yVal, 73, 30);
 			container.add(actionButtons.get(0));
 			container.add(actionButtons.get(1));
 			container.add(actionButtons.get(2));
+			container.add(actionButtons.get(3));
 			actionButtons.get(0).addActionListener(this);
 			actionButtons.get(1).addActionListener(this);
 			actionButtons.get(2).addActionListener(this);
+			actionButtons.get(3).addActionListener(this);
 		}
 	}
 
@@ -442,13 +454,60 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.add(new JButton(">"));
 			actionButtons.get(1).setBounds(300, yVal, 50, 30);
 			actionButtons.add(new JButton("HOME"));
-			actionButtons.get(2).setBounds(125, yVal, 150, 30);
+			actionButtons.get(2).setBounds(120, yVal, 73, 30);
+			actionButtons.add(new JButton("SORT"));
+			actionButtons.get(3).setBounds(207, yVal, 73, 30);
 			container.add(actionButtons.get(0));
 			container.add(actionButtons.get(1));
 			container.add(actionButtons.get(2));
+			container.add(actionButtons.get(3));
 			actionButtons.get(0).addActionListener(this);
 			actionButtons.get(1).addActionListener(this);
 			actionButtons.get(2).addActionListener(this);
+			actionButtons.get(3).addActionListener(this);
+		}
+	}
+	
+	/**
+	 * returnItem() method to create the button objects onto the GUI
+	 */
+	public void returnItem(int page) {
+		if (windowType.equals("Return Item")) {
+			otherPageNumber = page;
+			container.setLayout(null);
+			int nButtons = -1;
+			int xVal = 50;
+			int yVal = 20;
+			int wVal = 300;
+			int yDer = 40;
+			int start = 7 * (page - 1);
+			int end = start + 6;
+			for (Item i : currentUser.getRentals()) {
+				nButtons++;
+				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
+				if (nButtons >= start && nButtons <= end) {
+					buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
+					yVal += yDer;
+					container.add(buttons.get(nButtons));
+					buttons.get(nButtons).addActionListener(this);
+				}
+			}
+			actionButtons.add(new JButton("<"));
+			actionButtons.get(0).setBounds(50, yVal, 50, 30);
+			actionButtons.add(new JButton(">"));
+			actionButtons.get(1).setBounds(300, yVal, 50, 30);
+			actionButtons.add(new JButton("HOME"));
+			actionButtons.get(2).setBounds(120, yVal, 73, 30);
+			actionButtons.add(new JButton("SORT"));
+			actionButtons.get(3).setBounds(207, yVal, 73, 30);
+			container.add(actionButtons.get(0));
+			container.add(actionButtons.get(1));
+			container.add(actionButtons.get(2));
+			container.add(actionButtons.get(3));
+			actionButtons.get(0).addActionListener(this);
+			actionButtons.get(1).addActionListener(this);
+			actionButtons.get(2).addActionListener(this);
+			actionButtons.get(3).addActionListener(this);
 		}
 	}
 
@@ -612,7 +671,10 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(4)) { // Return
-					JOptionPane.showMessageDialog(this, "Return Button Not Implemented Yet!");
+					otherPageNumber = 1;
+					GUIManager returnItem = new GUIManager();
+					returnItem.openWindow("Return Item");
+					returnItem.returnItem(otherPageNumber);
 				}
 
 				if (e.getSource() == buttons.get(5)) { // Quit
@@ -651,6 +713,12 @@ public class GUIManager extends JFrame implements ActionListener {
 					itemList.itemList(pageNumber);
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(2)) {
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(3)) {
+					FileManager.toggleSort();
+					GUIManager itemList = new GUIManager();
+					itemList.openWindow("Item List");
+					itemList.itemList(pageNumber);
 					setVisible(false);
 				}
 
@@ -705,6 +773,12 @@ public class GUIManager extends JFrame implements ActionListener {
 					removeItem.removeItem(pageNumber);
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(2)) {
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(3)) {
+					FileManager.toggleSort();
+					GUIManager itemList = new GUIManager();
+					itemList.openWindow("Item List");
+					itemList.itemList(pageNumber);
 					setVisible(false);
 				}
 
@@ -801,6 +875,12 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(2)) {
 					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(3)) {
+					FileManager.toggleSort();
+					GUIManager itemList = new GUIManager();
+					itemList.openWindow("Item List");
+					itemList.itemList(pageNumber);
+					setVisible(false);
 				}
 
 				// RENT ITEM WINDOW
@@ -842,7 +922,55 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(2)) {
 					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(3)) {
+					FileManager.toggleSort();
+					GUIManager itemList = new GUIManager();
+					itemList.openWindow("Item List");
+					itemList.itemList(pageNumber);
+					setVisible(false);
 				}
+
+				// RETURN ITEM WINDOW
+			} else if (windowType.equals("Return Item")) {
+
+				for (int i = 0; i < currentUser.getRentals().size(); i++) {
+					if (e.getSource() == buttons.get(i)) {
+						Item item = currentUser.getRentals().get(i);
+						String claimedBy = "No longer rented by you. :(";
+						JOptionPane.showMessageDialog(this,
+								"YOU RETURNED THE FOLLOWING ITEM:\n\nID: " + item.getID() + "\nName of Item: "
+										+ item.getName() + "\nType of Item: " + item.getType() + "\nDescription: "
+										+ item.getDescription() + "\nIs Claimed By: " + claimedBy);
+						currentUser.removeRental(item.getID());
+						item.setIsClaimedBy("null");
+						FileManager.pushInventory();
+						FileManager.pushUsers();
+						setVisible(false);
+					}
+				}
+				if (e.getSource() == actionButtons.get(0) && otherPageNumber >= 2) {
+					GUIManager returnItem = new GUIManager();
+					returnItem.openWindow("Return Item");
+					otherPageNumber--;
+					returnItem.returnItem(otherPageNumber);
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(1)
+						&& otherPageNumber - 1 < (currentUser.getRentals().size() - 1) / 7) {
+					GUIManager returnItem = new GUIManager();
+					returnItem.openWindow("Return Item");
+					otherPageNumber++;
+					returnItem.returnItem(otherPageNumber);
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(2)) {
+					setVisible(false);
+				} else if (e.getSource() == actionButtons.get(3)) {
+					FileManager.toggleSort();
+					GUIManager itemList = new GUIManager();
+					itemList.openWindow("Item List");
+					itemList.itemList(pageNumber);
+					setVisible(false);
+				}
+
 			}
 
 		} catch (Exception ignore) {
