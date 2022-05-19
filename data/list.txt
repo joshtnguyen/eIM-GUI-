@@ -45,13 +45,8 @@ Bagel
 Food
 yum
 null
-I10
-Donut
-Food
-tasty
-null
 I17
 Adrian's Cap
 Fashion
 What adrian does on the daily.
-U1
+null

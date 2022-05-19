@@ -3,7 +3,7 @@
 U1
 dummy
 dummypass
-[I17]
+[I10]
 U2
 UserTest
 UserPassword

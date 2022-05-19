@@ -144,7 +144,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	/**
 	 * itemList() method to create the button objects onto the GUI
 	 */
-	public void itemList(int page) {
+	public void itemList(int page) throws IOException {
 		if (windowType.equals("Item List")) {
 			pageNumber = page;
 			container.setLayout(null);
@@ -155,6 +155,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
+			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize()-1);
 			for (Item i : FileManager.getInventory()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -218,7 +219,7 @@ public class GUIManager extends JFrame implements ActionListener {
 		}
 	}
 
-	public void removeItem(int page) {
+	public void removeItem(int page) throws IOException {
 		if (windowType.equals("Remove Item")) {
 			pageNumber = page;
 			container.setLayout(null);
@@ -229,6 +230,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
+			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize()-1);
 			for (Item i : FileManager.getInventory()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -379,7 +381,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	/**
 	 * yourRentals() method to create the button objects onto the GUI
 	 */
-	public void yourRentals(int page) {
+	public void yourRentals(int page) throws IOException {
 		if (windowType.equals("Your Rentals")) {
 			otherPageNumber = page;
 			container.setLayout(null);
@@ -390,6 +392,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
+			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size()-1);
 			for (Item i : currentUser.getRentals()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -422,7 +425,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	/**
 	 * rentItem() method to create the button objects onto the GUI
 	 */
-	public void rentItem(int page) {
+	public void rentItem(int page) throws IOException {
 		if (windowType.equals("Rent Item")) {
 			otherPageNumber = page;
 			container.setLayout(null);
@@ -439,6 +442,7 @@ public class GUIManager extends JFrame implements ActionListener {
 					temp.add(i);
 				}
 			}
+			FileManager.sortInventory(temp, 0, temp.size()-1);
 			for (Item i : temp) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -471,7 +475,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	/**
 	 * returnItem() method to create the button objects onto the GUI
 	 */
-	public void returnItem(int page) {
+	public void returnItem(int page) throws IOException{
 		if (windowType.equals("Return Item")) {
 			otherPageNumber = page;
 			container.setLayout(null);
@@ -482,6 +486,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
+			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size()-1);
 			for (Item i : currentUser.getRentals()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -776,9 +781,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(3)) {
 					FileManager.toggleSort();
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Item List");
-					itemList.itemList(pageNumber);
+					GUIManager removeItem = new GUIManager();
+					removeItem.openWindow("Remove Item");
+					removeItem.removeItem(pageNumber);
 					setVisible(false);
 				}
 
@@ -877,9 +882,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(3)) {
 					FileManager.toggleSort();
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Item List");
-					itemList.itemList(pageNumber);
+					GUIManager yourRentals = new GUIManager();
+					yourRentals.openWindow("Your Rentals");
+					yourRentals.yourRentals(otherPageNumber);
 					setVisible(false);
 				}
 
@@ -924,9 +929,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(3)) {
 					FileManager.toggleSort();
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Item List");
-					itemList.itemList(pageNumber);
+					GUIManager rentItem = new GUIManager();
+					rentItem.openWindow("Rent Item");
+					rentItem.rentItem(otherPageNumber);
 					setVisible(false);
 				}
 
@@ -965,9 +970,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					setVisible(false);
 				} else if (e.getSource() == actionButtons.get(3)) {
 					FileManager.toggleSort();
-					GUIManager itemList = new GUIManager();
-					itemList.openWindow("Item List");
-					itemList.itemList(pageNumber);
+					GUIManager returnItem = new GUIManager();
+					returnItem.openWindow("Return Item");
+					returnItem.returnItem(otherPageNumber);
 					setVisible(false);
 				}
 

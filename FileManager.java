@@ -17,7 +17,7 @@ public class FileManager {
 	public final static String BACKUP_DIRECTORY = INVENTORY_DIRECTORY + "backups/";
 	private static ArrayList<Item> inventory = new ArrayList<Item>();
 	private static ArrayList<User> users = new ArrayList<User>();
-	private static boolean sortedByID;
+	private static boolean sortedByID = true;
 
 	/**
 	 * getList method to return the current inventory
@@ -114,9 +114,18 @@ public class FileManager {
 	 */
 
 	public static Item removeItem(int index) throws IOException {
-		Item i = inventory.remove(index);
+		Item item = inventory.remove(index);
 		pushInventory();
-		return i;
+		for (User u : users) {
+			ArrayList<Item> rentals = u.getRentals();
+			for (int i = 0; i < rentals.size(); i++) {
+				if (item.getID().equals(rentals.get(i).getID())) {
+					rentals.remove(i);
+					i--;
+				}
+			}
+		}
+		return item;
 	}
 
 	/**
@@ -170,6 +179,7 @@ public class FileManager {
 	 */
 	public static void pullInventory(String source) throws FileNotFoundException {
 		try {
+			sortedByID = true;
 			File file = new File(source);
 			Scanner sc = new Scanner(file);
 			boolean flag = true;
@@ -278,7 +288,7 @@ public class FileManager {
 			return;
 		}
 	}
-	
+
 	/**
 	 * pushUsers method to push data into text file when the program is closed
 	 * 
@@ -307,64 +317,68 @@ public class FileManager {
 			w.close();
 
 		} catch (Exception e) {
-			//System.out.println(e.getStackTrace()[0].getLineNumber() + " - " + e.getMessage());
+			// System.out.println(e.getStackTrace()[0].getLineNumber() + " - " +
+			// e.getMessage());
 			return;
 		}
 	}
 
 	public static void sortInventory(ArrayList<Item> a, int first, int last) throws IOException {
+		if (a == null || a.size() == 0) {
+			return;
+		}
 		if (sortedByID) {
 			int g = first;
-	    int h = last;
-	    int mid = (first + last) / 2;
-	    String dividingValue = a.get(mid).getID().substring(1);
-	    do {
-		    while (a.get(g).getID().substring(1).compareTo(dividingValue) < 0) {
-			    g++;
-		    }
-		    while (a.get(h).getID().substring(1).compareTo(dividingValue) > 0) {
-			    h--;
-		    }
-		    if (g <= h) {
-          Item temp = a.get(g);
-	        a.set(g, a.get(h));
-	        a.set(h, temp);
-			    g++;
-			    h--;
-		    }
-	    } while (g < h);
-	    if (h > first) {
-		    sortInventory(a, first, h);
-	    }
-	    if (g < last) {
-		    sortInventory(a, g, last);
-	    }
+			int h = last;
+			int mid = (first + last) / 2;
+			int dividingValue = Integer.parseInt(a.get(mid).getID().substring(1));
+			do {
+				while (Integer.parseInt(a.get(g).getID().substring(1)) < dividingValue) {
+					g++;
+				}
+				while (Integer.parseInt(a.get(h).getID().substring(1)) > dividingValue) {
+					h--;
+				}
+				if (g <= h) {
+					Item temp = a.get(g);
+					a.set(g, a.get(h));
+					a.set(h, temp);
+					g++;
+					h--;
+				}
+			} while (g < h);
+			if (h > first) {
+				sortInventory(a, first, h);
+			}
+			if (g < last) {
+				sortInventory(a, g, last);
+			}
 		} else {
 			int g = first;
-	    int h = last;
-	    int mid = (first + last) / 2;
-	    String dividingValue = a.get(mid).getName();
-	    do {
-		    while (a.get(g).getName().compareTo(dividingValue) < 0) {
-			    g++;
-		    }
-		    while (a.get(h).getName().compareTo(dividingValue) > 0) {
-			    h--;
-		    }
-		    if (g <= h) {
-          Item temp = a.get(g);
-	        a.set(g, a.get(h));
-	        a.set(h, temp);
-			    g++;
-			    h--;
-		    }
-	    } while (g < h);
-	    if (h > first) {
-		    sortInventory(a, first, h);
-	    }
-	    if (g < last) {
-		    sortInventory(a, g, last);
-	    }
+			int h = last;
+			int mid = (first + last) / 2;
+			String dividingValue = a.get(mid).getName();
+			do {
+				while (a.get(g).getName().compareTo(dividingValue) < 0) {
+					g++;
+				}
+				while (a.get(h).getName().compareTo(dividingValue) > 0) {
+					h--;
+				}
+				if (g <= h) {
+					Item temp = a.get(g);
+					a.set(g, a.get(h));
+					a.set(h, temp);
+					g++;
+					h--;
+				}
+			} while (g < h);
+			if (h > first) {
+				sortInventory(a, first, h);
+			}
+			if (g < last) {
+				sortInventory(a, g, last);
+			}
 		}
 	}
 
@@ -408,7 +422,7 @@ public class FileManager {
 		}
 		return null;
 	}
-	
+
 	public static User findUserID(String id) {
 		for (User u : users) {
 			if (u.getID().equals(id)) {
@@ -421,7 +435,7 @@ public class FileManager {
 	public static ArrayList<User> getUsers() {
 		return users;
 	}
-	
+
 	public static void toggleSort() {
 		sortedByID = !sortedByID;
 	}
