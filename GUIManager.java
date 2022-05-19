@@ -541,7 +541,9 @@ public class GUIManager extends JFrame implements ActionListener {
 					for (char c : passwordField.getPassword()) {
 						pass += c;
 					}
-					if (userField.getText().equals("") || pass.equals("")) {
+          if (pass.length() <= 5) {
+            JOptionPane.showMessageDialog(this, "The PASSWORD length must be more than 5 characters long.");
+          } else if (userField.getText().equals("") || pass.equals("")) {
 						JOptionPane.showMessageDialog(this, "The USERNAME and PASSWORD field are required.");
 					} else if (createAccount.isSelected()) {
 						boolean successful = FileManager.addUser(userField.getText(), pass);
@@ -642,6 +644,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 				if (e.getSource() == buttons.get(6)) { // Quit
 					//System.exit(0);
+          FileManager.sortByID();
           GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
@@ -698,6 +701,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 				if (e.getSource() == buttons.get(5)) { // Quit
 					//System.exit(0);
+          FileManager.sortByID();
           GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();

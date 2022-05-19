@@ -420,4 +420,8 @@ public class FileManager {
 		sortedByID = !sortedByID;
 	}
 
+  public static void sortByID() {
+		sortedByID = true;
+	}
+
 }
