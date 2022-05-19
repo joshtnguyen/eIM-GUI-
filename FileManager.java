@@ -14,7 +14,6 @@ public class FileManager {
 	public final static String DATA_DIRECTORY = "data/";
 	public final static String INVENTORY_DIRECTORY = DATA_DIRECTORY + "";
 	public final static String USER_DIRECTORY = DATA_DIRECTORY + "userData/";
-	public final static String BACKUP_DIRECTORY = INVENTORY_DIRECTORY + "backups/";
 	private static ArrayList<Item> inventory = new ArrayList<Item>();
 	private static ArrayList<User> users = new ArrayList<User>();
 	private static boolean sortedByID = true;
@@ -303,6 +302,13 @@ public class FileManager {
 		}
 	}
 
+  /**
+  * sortInventory sorts the Item inventory according to ID numbers or lexographically using quicksort
+  * 
+  * @param ArrayList<Item> - ArrayList to be sorted
+  * @param first - first index
+  * @param last - last index
+  */
 	public static void sortInventory(ArrayList<Item> a, int first, int last) throws IOException {
 		if (a == null || a.size() == 0) {
 			return;
@@ -362,6 +368,12 @@ public class FileManager {
 		}
 	}
 
+  /**
+  * addUser method checks if the user's username has not already been taken and if it hasn't, it adds the user's username and password to the corresponding document and the     * list
+  *
+  * @param username - String that is the username of the new user
+  * @param password - String that is the password for the new user's username
+  */
 	public static boolean addUser(String username, String password) throws FileNotFoundException, IOException {
 		for (User u : users) {
 			if (u.getUsername().equals(username)) {
@@ -385,6 +397,11 @@ public class FileManager {
 		return true;
 	}
 
+  /**
+  * findItem method to return the index of the item with the id selected by the user
+  *
+  * @param id - String of the id the user wants
+  */
 	public static Item findItem(String id) {
 		for (Item i : inventory) {
 			if (id.equals(i.getID())) {
@@ -394,6 +411,13 @@ public class FileManager {
 		return null;
 	}
 
+  /**
+  * findUser method to return the user object with the same username as the one selected by the user
+  *
+  * @param username - username selected by the user
+  *
+  * @return - user object
+  */
 	public static User findUser(String username) {
 		for (User u : users) {
 			if (u.getUsername().equals(username)) {
@@ -403,6 +427,13 @@ public class FileManager {
 		return null;
 	}
 
+  /**
+  * findUserID method to return the user object with the same id as the one selected by the user
+  *
+  * @param id - String id selected by the user
+  *
+  * @return - user object or null
+  */
 	public static User findUserID(String id) {
 		for (User u : users) {
 			if (u.getID().equals(id)) {
@@ -412,14 +443,25 @@ public class FileManager {
 		return null;
 	}
 
+  /**
+  * getUsers() method to return the list of users
+  *
+  * @return ArrayList<User> - list of users
+  */
 	public static ArrayList<User> getUsers() {
 		return users;
 	}
 
+  /**
+  * toggleSort() method to to change the value of sortedByID to its opposite
+  */
 	public static void toggleSort() {
 		sortedByID = !sortedByID;
 	}
 
+  /**
+  * sortByID() method to make value of sortedByID true
+  */
   public static void sortByID() {
 		sortedByID = true;
 	}

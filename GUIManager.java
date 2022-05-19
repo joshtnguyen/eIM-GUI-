@@ -71,6 +71,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * showLoginWindow method to display the GUI
+	 * 
 	 */
 	public void showLoginWindow() {
 		if (windowType.equals("Login")) {
@@ -150,6 +151,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * itemList() method to create the button objects onto the GUI
+   * @param page - the page number to start on
 	 */
 	public void itemList(int page) throws IOException {
 		if (windowType.equals("Item List")) {
@@ -191,7 +193,9 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(3).addActionListener(this);
 		}
 	}
-
+	/**
+	 * addItem() method to add an item to an inventory
+	 */
 	public void addItem() {
 
 		if (windowType.equals("Add Item")) {
@@ -225,7 +229,11 @@ public class GUIManager extends JFrame implements ActionListener {
 
 		}
 	}
-
+  
+	/**
+	 * removeItem() method to remove an item from an inventory
+   * @param page - the page number the item to remove is on
+	 */
 	public void removeItem(int page) throws IOException {
 		if (windowType.equals("Remove Item")) {
 			pageNumber = page;
@@ -266,7 +274,10 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(3).addActionListener(this);
 		}
 	}
-
+	/**
+	 * loadBackup() method to load a previous backup
+   * @param page - the page number of the backup to be uploaded
+	 */
 	public void loadBackup(int page) {
 		if (windowType.equals("Load Backup")) {
 			backupPageNumber = page;
@@ -304,7 +315,10 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(2).addActionListener(this);
 		}
 	}
-
+	/**
+	 * deleteBackup() method to delete a backup
+   * @param page - the page number of the backup to be uploaded
+	 */
 	public void deleteBackup(int page) {
 		if (windowType.equals("Delete Backup")) {
 			backupPageNumber = page;
@@ -387,6 +401,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * yourRentals() method to create the button objects onto the GUI
+   * param page - the page number of the backup to be uploaded
 	 */
 	public void yourRentals(int page) throws IOException {
 		if (windowType.equals("Your Rentals")) {
@@ -431,6 +446,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * rentItem() method to create the button objects onto the GUI
+   * @param page - the page number the item to remove is on
 	 */
 	public void rentItem(int page) throws IOException {
 		if (windowType.equals("Rent Item")) {
@@ -481,6 +497,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * returnItem() method to create the button objects onto the GUI
+   * @param page - the page number the item to return is on
 	 */
 	public void returnItem(int page) throws IOException {
 		if (windowType.equals("Return Item")) {
@@ -816,7 +833,7 @@ public class GUIManager extends JFrame implements ActionListener {
 					if (e.getSource() == buttons.get(i)) {
 						String fileName = BackupManager.getAllFiles()[i];
 						JOptionPane.showMessageDialog(this, "BACKUP HAS BEEN LOADED:\n" + fileName);
-						FileManager.pullInventory(FileManager.BACKUP_DIRECTORY + fileName);
+						FileManager.pullInventory(BackupManager.BACKUP_DIRECTORY + fileName);
 						setVisible(false);
 					}
 				}

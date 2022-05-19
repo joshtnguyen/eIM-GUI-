@@ -8,7 +8,9 @@ import java.io.*;
  */
 
 public class Main {
-
+/**
+ *Main method which pulls the inventory and users then initializes the login window
+ */
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 
 		FileManager.pullInventory();
@@ -19,7 +21,12 @@ public class Main {
 		loginWindow.showLoginWindow();
 
 	}
-
+/**
+	* checkLogin() method to return all files in backup
+	* @ param username - the username entered
+	* @ param password - the password entered
+	* @return login - the user login
+	*/
 	public static String checkLogin(String username, String password) throws IOException, FileNotFoundException {
 		String login = "N/A";
 

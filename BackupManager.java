@@ -7,14 +7,17 @@ import java.time.LocalDateTime;
  * @author Josh Nguyen
  * 
  */
-public class BackupManager {
+public class BackupManager extends FileManager {
+
+  public final static String BACKUP_DIRECTORY = INVENTORY_DIRECTORY + "backups/";
+  
 	/**
 	 * getAllFiles() method to return all files in backup
 	 * 
 	 * @return fileList - list of all backup files
 	 */
 	public static String[] getAllFiles() {
-		File file = new File(FileManager.BACKUP_DIRECTORY);
+		File file = new File(BackupManager.BACKUP_DIRECTORY);
 		String[] fileList = file.list();
 		return fileList;
 	}
@@ -36,13 +39,18 @@ public class BackupManager {
 		}
 	}
 
+  /**
+  * saveBackup() - saves new backup with copy of inventory information at current time
+  * 
+  * @return String - current time or null
+  */
 	public static String saveBackup() throws IOException {
 		try {
 			String time = "" + LocalDateTime.now();
 			time = time.replace(":", "--");
 
-			FileManager.pushInventory(FileManager.BACKUP_DIRECTORY + time);
-			System.out.println("Backup <<" + FileManager.BACKUP_DIRECTORY + time + ".txt>> has been created.");
+			FileManager.pushInventory(BackupManager.BACKUP_DIRECTORY + time);
+			System.out.println("Backup <<" + BackupManager.BACKUP_DIRECTORY + time + ".txt>> has been created.");
 			return time;
 		} catch (Exception e) {
 			System.out.println("Error on Backup");
@@ -50,9 +58,16 @@ public class BackupManager {
 		}
 	}
 
+  /**
+  * deleteBackup to delete the selected backup
+  *
+  * @param fileName - name of the file to be deleted
+  *
+  * @return String - name of the file or null if there is no file 
+  */
 	public static String deleteBackup(String fileName) throws IOException {
 		try {
-			File file = new File(FileManager.BACKUP_DIRECTORY + fileName);
+			File file = new File(BackupManager.BACKUP_DIRECTORY + fileName);
 			if (file.delete()) {
 				return fileName;
 			} else {
@@ -92,6 +107,23 @@ public class BackupManager {
 			return 0;
 		} else {
 			return fileList.length;
+		}
+	}
+
+  /**
+  * Pulls a backup from the backups folder.
+  * Pre-condition: fileName is a legitimate backup file
+  *
+  * @param fileName - name of the file to be deleted
+  *
+  * @return String - name of the file or null if there is no file 
+  */
+	public static void pullInventory(String fileName) throws IOException {
+		try {
+			super.pullInventory(BACKUP_DIRECTORY + fileName);
+		} catch (Exception e) {
+			System.out.println("Error on Backup");
+			return null;
 		}
 	}
 
