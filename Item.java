@@ -19,6 +19,7 @@ public class Item {
 	 * 
 	 * @param name - name of the item
 	 * @param type - type of the item
+   * @param description - description of the item
 	 */
 	public Item(String name, String type, String description) {
 		lastID++;
@@ -35,6 +36,7 @@ public class Item {
 	 * @param name        - name of the item
 	 * @param type        - type of the item
 	 * @param description - description of the condition of the item
+	 * @param isClaimedBy - the user the item is claimed by
 	 */
 	public Item(String id, String name, String type, String description, String isClaimedBy) {
 		this.id = id;

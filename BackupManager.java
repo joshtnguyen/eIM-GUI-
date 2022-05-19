@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  * @author Josh Nguyen
  * 
  */
-public class BackupManager extends FileManager {
+public class BackupManager {
 
   public final static String BACKUP_DIRECTORY = INVENTORY_DIRECTORY + "backups/";
   
@@ -24,8 +24,6 @@ public class BackupManager extends FileManager {
 
 	/**
 	 * printViewableFiles() method to return all files in backup
-	 * 
-	 * @return fileList - list of all backup files
 	 */
 	public static void printViewableFiles() {
 		String[] fileList = getAllFiles();
@@ -80,11 +78,10 @@ public class BackupManager extends FileManager {
 	}
 
 	/**
-	 * getFileName for the Item class
+	 * getFileName for the backups
 	 * 
-	 * @param name        - name of the item
-	 * @param type        - type of the item
-	 * @param description - description of the condition of the item
+	 * @param backupFile - int of the backupFile
+   * @return file - the specific file the user requested 
 	 */
 	public static String getFileName(int backupFile) {
 		String[] fileList = getAllFiles();
@@ -107,23 +104,6 @@ public class BackupManager extends FileManager {
 			return 0;
 		} else {
 			return fileList.length;
-		}
-	}
-
-  /**
-  * Pulls a backup from the backups folder.
-  * Pre-condition: fileName is a legitimate backup file
-  *
-  * @param fileName - name of the file to be deleted
-  *
-  * @return String - name of the file or null if there is no file 
-  */
-	public static void pullInventory(String fileName) throws IOException {
-		try {
-			super.pullInventory(BACKUP_DIRECTORY + fileName);
-		} catch (Exception e) {
-			System.out.println("Error on Backup");
-			return null;
 		}
 	}
 
