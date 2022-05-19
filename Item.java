@@ -17,9 +17,9 @@ public class Item {
 	/**
 	 * Constructor for the Item class
 	 * 
-	 * @param name - name of the item
-	 * @param type - type of the item
-   * @param description - description of the item
+	 * @param name        - name of the item
+	 * @param type        - type of the item
+	 * @param description - description of the item
 	 */
 	public Item(String name, String type, String description) {
 		lastID++;

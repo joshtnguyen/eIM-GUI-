@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  */
 public class BackupManager {
 
-  public final static String BACKUP_DIRECTORY = INVENTORY_DIRECTORY + "backups/";
-  
+	public final static String BACKUP_DIRECTORY = FileManager.INVENTORY_DIRECTORY + "backups/";
+
 	/**
 	 * getAllFiles() method to return all files in backup
 	 * 
@@ -24,6 +24,8 @@ public class BackupManager {
 
 	/**
 	 * printViewableFiles() method to return all files in backup
+	 * 
+	 * @return fileList - list of all backup files
 	 */
 	public static void printViewableFiles() {
 		String[] fileList = getAllFiles();
@@ -37,11 +39,12 @@ public class BackupManager {
 		}
 	}
 
-  /**
-  * saveBackup() - saves new backup with copy of inventory information at current time
-  * 
-  * @return String - current time or null
-  */
+	/**
+	 * saveBackup() - saves new backup with copy of inventory information at current
+	 * time
+	 * 
+	 * @return String - current time or null
+	 */
 	public static String saveBackup() throws IOException {
 		try {
 			String time = "" + LocalDateTime.now();
@@ -56,13 +59,13 @@ public class BackupManager {
 		}
 	}
 
-  /**
-  * deleteBackup to delete the selected backup
-  *
-  * @param fileName - name of the file to be deleted
-  *
-  * @return String - name of the file or null if there is no file 
-  */
+	/**
+	 * deleteBackup to delete the selected backup
+	 *
+	 * @param fileName - name of the file to be deleted
+	 *
+	 * @return String - name of the file or null if there is no file
+	 */
 	public static String deleteBackup(String fileName) throws IOException {
 		try {
 			File file = new File(BackupManager.BACKUP_DIRECTORY + fileName);
@@ -78,10 +81,11 @@ public class BackupManager {
 	}
 
 	/**
-	 * getFileName for the backups
+	 * getFileName for the Item class
 	 * 
-	 * @param backupFile - int of the backupFile
-   * @return file - the specific file the user requested 
+	 * @param name        - name of the item
+	 * @param type        - type of the item
+	 * @param description - description of the condition of the item
 	 */
 	public static String getFileName(int backupFile) {
 		String[] fileList = getAllFiles();
@@ -105,6 +109,6 @@ public class BackupManager {
 		} else {
 			return fileList.length;
 		}
-	}
 
+	}
 }

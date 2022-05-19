@@ -1,13 +1,23 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
-* @author Josh Nguyen
-*/
+ * @author Josh Nguyen
+ */
 public class GUIManager extends JFrame implements ActionListener {
 
 	private String windowType;
@@ -76,7 +86,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	public void showLoginWindow() {
 		if (windowType.equals("Login")) {
 			container.setLayout(null);
-      buttons.add(new JButton("QUIT"));
+			buttons.add(new JButton("QUIT"));
 			userLabel.setBounds(50, 50, 100, 30);
 			passwordLabel.setBounds(50, 120, 100, 30);
 			userField.setBounds(150, 50, 150, 30);
@@ -85,7 +95,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			createAccount.setBounds(150, 170, 150, 30);
 			loginButton.setBounds(50, 220, 100, 30);
 			resetButton.setBounds(200, 220, 100, 30);
-      buttons.get(0).setBounds(50, 260, 250, 30);
+			buttons.get(0).setBounds(50, 260, 250, 30);
 			container.add(userLabel);
 			container.add(passwordLabel);
 			container.add(userField);
@@ -94,12 +104,12 @@ public class GUIManager extends JFrame implements ActionListener {
 			container.add(createAccount);
 			container.add(loginButton);
 			container.add(resetButton);
-      container.add(buttons.get(0));
+			container.add(buttons.get(0));
 			loginButton.addActionListener(this);
 			resetButton.addActionListener(this);
 			showPassword.addActionListener(this);
 			createAccount.addActionListener(this);
-      buttons.get(0).addActionListener(this);
+			buttons.get(0).addActionListener(this);
 		}
 	}
 
@@ -151,7 +161,8 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * itemList() method to create the button objects onto the GUI
-   * @param page - the page number to start on
+	 * 
+	 * @param page - the page number to start on
 	 */
 	public void itemList(int page) throws IOException {
 		if (windowType.equals("Item List")) {
@@ -193,6 +204,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(3).addActionListener(this);
 		}
 	}
+
 	/**
 	 * addItem() method to add an item to an inventory
 	 */
@@ -229,10 +241,11 @@ public class GUIManager extends JFrame implements ActionListener {
 
 		}
 	}
-  
+
 	/**
 	 * removeItem() method to remove an item from an inventory
-   * @param page - the page number the item to remove is on
+	 * 
+	 * @param page - the page number the item to remove is on
 	 */
 	public void removeItem(int page) throws IOException {
 		if (windowType.equals("Remove Item")) {
@@ -274,9 +287,11 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(3).addActionListener(this);
 		}
 	}
+
 	/**
 	 * loadBackup() method to load a previous backup
-   * @param page - the page number of the backup to be uploaded
+	 * 
+	 * @param page - the page number of the backup to be uploaded
 	 */
 	public void loadBackup(int page) {
 		if (windowType.equals("Load Backup")) {
@@ -315,9 +330,11 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(2).addActionListener(this);
 		}
 	}
+
 	/**
 	 * deleteBackup() method to delete a backup
-   * @param page - the page number of the backup to be uploaded
+	 * 
+	 * @param page - the page number of the backup to be uploaded
 	 */
 	public void deleteBackup(int page) {
 		if (windowType.equals("Delete Backup")) {
@@ -400,8 +417,8 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * yourRentals() method to create the button objects onto the GUI
-   * param page - the page number of the backup to be uploaded
+	 * yourRentals() method to create the button objects onto the GUI param page -
+	 * the page number of the backup to be uploaded
 	 */
 	public void yourRentals(int page) throws IOException {
 		if (windowType.equals("Your Rentals")) {
@@ -446,7 +463,8 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * rentItem() method to create the button objects onto the GUI
-   * @param page - the page number the item to remove is on
+	 * 
+	 * @param page - the page number the item to remove is on
 	 */
 	public void rentItem(int page) throws IOException {
 		if (windowType.equals("Rent Item")) {
@@ -497,7 +515,8 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * returnItem() method to create the button objects onto the GUI
-   * @param page - the page number the item to return is on
+	 * 
+	 * @param page - the page number the item to return is on
 	 */
 	public void returnItem(int page) throws IOException {
 		if (windowType.equals("Return Item")) {
@@ -551,16 +570,16 @@ public class GUIManager extends JFrame implements ActionListener {
 
 			// LOGIN WINDOW
 			if (windowType.equals("Login")) {
-        if (e.getSource() == buttons.get(0)) {
-          System.exit(0);
-        } else if (e.getSource() == loginButton) {
+				if (e.getSource() == buttons.get(0)) {
+					System.exit(0);
+				} else if (e.getSource() == loginButton) {
 					String pass = "";
 					for (char c : passwordField.getPassword()) {
 						pass += c;
 					}
-          if (pass.length() <= 5) {
-            JOptionPane.showMessageDialog(this, "The PASSWORD length must be more than 5 characters long.");
-          } else if (userField.getText().equals("") || pass.equals("")) {
+					if (pass.length() <= 5) {
+						JOptionPane.showMessageDialog(this, "The PASSWORD length must be more than 5 characters long.");
+					} else if (userField.getText().equals("") || pass.equals("")) {
 						JOptionPane.showMessageDialog(this, "The USERNAME and PASSWORD field are required.");
 					} else if (createAccount.isSelected()) {
 						boolean successful = FileManager.addUser(userField.getText(), pass);
@@ -660,13 +679,13 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(6)) { // Quit
-					//System.exit(0);
-          FileManager.sortByID();
-          GUIManager loginWindow = new GUIManager();
+					// System.exit(0);
+					FileManager.sortByID();
+					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
-          JOptionPane.showMessageDialog(this, "You've been signed out.");
-          setVisible(false);
+					JOptionPane.showMessageDialog(this, "You've been signed out.");
+					setVisible(false);
 				}
 
 				// USER WINDOW
@@ -717,13 +736,13 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(5)) { // Quit
-					//System.exit(0);
-          FileManager.sortByID();
-          GUIManager loginWindow = new GUIManager();
+					// System.exit(0);
+					FileManager.sortByID();
+					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
-          JOptionPane.showMessageDialog(this, "You've been signed out.");
-          setVisible(false);
+					JOptionPane.showMessageDialog(this, "You've been signed out.");
+					setVisible(false);
 				}
 
 				// ITEM LIST WINDOW
