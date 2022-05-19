@@ -46,23 +46,6 @@ public class FileManager {
 	}
 
 	/**
-	 * addItem method to add an item to the inventory by prompting the user
-	 */
-	public static void addItem() throws IOException {
-		Scanner sc = new Scanner(System.in);
-
-		System.out.print("What is the name of the item: ");
-		String itemName = sc.nextLine();
-		System.out.print("Enter the type of item: ");
-		String itemType = sc.nextLine();
-		System.out.print("Enter a short description of the item: ");
-		String desc = sc.nextLine();
-
-		inventory.add(new Item(itemName, itemType, desc));
-		pushInventory();
-	}
-
-	/**
 	 * addItem method to add an item to the inventory with user input
 	 * 
 	 * @param i - the item to add to the inventory
@@ -79,32 +62,6 @@ public class FileManager {
 	 */
 	public static ArrayList<Item> getInventory() {
 		return inventory;
-	}
-
-	/**
-	 * removeItem method to remove an item from the inventory
-	 */
-	public static void removeItem() throws IOException {
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Current inventory: ");
-		for (int i = 0; i < inventory.size(); i++) {
-			System.out.println((i + 1) + ": " + inventory.get(i));
-		}
-		System.out.print("\nEnter the list item number you would like to remove (Enter 0 to quit): ");
-
-		try {
-			int input = sc.nextInt();
-			if (input > 0 && input <= inventory.size()) {
-				Item temp = removeItem(input - 1);
-				System.out.println("Item <<" + temp.getName() + ">> successfully removed!");
-			} else {
-				System.out.print("Invalid input - no items removed.");
-			}
-		} catch (Exception e) {
-			System.out.println("Invalid input - no items removed.");
-		}
-
 	}
 
 	/**
@@ -129,7 +86,7 @@ public class FileManager {
 	}
 
 	/**
-	 * pushInventory method to update the inventry text file with the current
+	 * pushInventory method to update the inventory text file with the current
 	 * inventory
 	 */
 	public static void pushInventory() throws IOException {
@@ -137,7 +94,7 @@ public class FileManager {
 	}
 
 	/**
-	 * pushInventory method to update the inventry text file with the current
+	 * pushInventory method to update the inventory text file with the current
 	 * inventory
 	 * 
 	 * @param source - String of the old inventory to be updated
@@ -211,38 +168,37 @@ public class FileManager {
 						inventory.clear();
 					}
 					inventory.add(new Item(l1, l2, l3, l4, l5));
-					
+
 				}
 
 			} while (!l1.equals("=====> USER MANAGER"));
 
 		} catch (Exception e) {
 			pushInventory();
-      if (!source.equals(INVENTORY_DIRECTORY + "list.txt")) {
-        int lastID = Item.getLastID();
-        for (User u : users) {
-          ArrayList<Item> currentRentals = u.getRentals();
-          for (int i = 0; i < currentRentals.size(); i++) {
-            if (Integer.parseInt(currentRentals.get(i).getID().substring(1)) > lastID) {
-              currentRentals.remove(i);
-              i--;
-            }
-          }
-        }
-        for (Item i : inventory) {
-          i.setIsClaimedBy("null");
-        }
-        for (User u : users) {
-          for (Item i : u.getRentals()) {
-            i.setIsClaimedBy(u.getID());
-          }
-        }
-        pushUsers();
-        pushInventory();
-      }
+			if (!source.equals(INVENTORY_DIRECTORY + "list.txt")) {
+				int lastID = Item.getLastID();
+				for (User u : users) {
+					ArrayList<Item> currentRentals = u.getRentals();
+					for (int i = 0; i < currentRentals.size(); i++) {
+						if (Integer.parseInt(currentRentals.get(i).getID().substring(1)) > lastID) {
+							currentRentals.remove(i);
+							i--;
+						}
+					}
+				}
+				for (Item i : inventory) {
+					i.setIsClaimedBy("null");
+				}
+				for (User u : users) {
+					for (Item i : u.getRentals()) {
+						findItem(i.getID()).setIsClaimedBy(u.getID());
+					}
+				}
+				pushUsers();
+				pushInventory();
+			}
 
-
-      return;
+			return;
 		}
 	}
 
@@ -343,8 +299,6 @@ public class FileManager {
 			w.close();
 
 		} catch (Exception e) {
-			// System.out.println(e.getStackTrace()[0].getLineNumber() + " - " +
-			// e.getMessage());
 			return;
 		}
 	}

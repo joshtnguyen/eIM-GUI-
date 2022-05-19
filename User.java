@@ -105,7 +105,7 @@ public class User {
 			rentals.add(item);
 		}
 	}
-	
+
 	/**
 	 * removeRental() method to remove a rental;
 	 * 

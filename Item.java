@@ -26,7 +26,7 @@ public class Item {
 		this.name = name;
 		this.type = type;
 		this.description = description;
-		isClaimedBy = null;
+		isClaimedBy = "null";
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Item {
 	 * @param description - description of the condition of the item
 	 */
 	public Item(String id, String name, String type, String description, String isClaimedBy) {
-    this.id = id;
+		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.description = description;
@@ -107,7 +107,7 @@ public class Item {
 	public static int getLastID() {
 		return lastID;
 	}
-	
+
 	/**
 	 * setIsClaimedBy method to change the claimed user ids
 	 * 

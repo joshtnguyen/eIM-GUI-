@@ -155,7 +155,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
-			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize()-1);
+			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize() - 1);
 			for (Item i : FileManager.getInventory()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -230,7 +230,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
-			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize()-1);
+			FileManager.sortInventory(FileManager.getInventory(), 0, FileManager.getInventorySize() - 1);
 			for (Item i : FileManager.getInventory()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -335,7 +335,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(2).addActionListener(this);
 		}
 	}
-	
+
 	/**
 	 * userLogin method to display the GUI
 	 */
@@ -392,7 +392,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
-			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size()-1);
+			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size() - 1);
 			for (Item i : currentUser.getRentals()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -442,7 +442,7 @@ public class GUIManager extends JFrame implements ActionListener {
 					temp.add(i);
 				}
 			}
-			FileManager.sortInventory(temp, 0, temp.size()-1);
+			FileManager.sortInventory(temp, 0, temp.size() - 1);
 			for (Item i : temp) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
@@ -471,11 +471,11 @@ public class GUIManager extends JFrame implements ActionListener {
 			actionButtons.get(3).addActionListener(this);
 		}
 	}
-	
+
 	/**
 	 * returnItem() method to create the button objects onto the GUI
 	 */
-	public void returnItem(int page) throws IOException{
+	public void returnItem(int page) throws IOException {
 		if (windowType.equals("Return Item")) {
 			otherPageNumber = page;
 			container.setLayout(null);
@@ -486,7 +486,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			int yDer = 40;
 			int start = 7 * (page - 1);
 			int end = start + 6;
-			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size()-1);
+			FileManager.sortInventory(currentUser.getRentals(), 0, currentUser.getRentals().size() - 1);
 			for (Item i : currentUser.getRentals()) {
 				nButtons++;
 				buttons.add(new JButton("" + i.getID() + " - " + i.getName()));
