@@ -42,7 +42,7 @@ public class BackupManager {
 	 * time
 	 * 
 	 * @return String - current time or null
-   * @throws IOException in case the input and output doesn't work
+	 * @throws IOException in case the input and output doesn't work
 	 */
 	public static String saveBackup() throws IOException {
 		try {
@@ -64,8 +64,8 @@ public class BackupManager {
 	 * @param fileName - name of the file to be deleted
 	 *
 	 * @return String - name of the file or null if there is no file
-   *
-   * @throws IOException in case input or output doesn't work
+	 *
+	 * @throws IOException in case input or output doesn't work
 	 */
 	public static String deleteBackup(String fileName) throws IOException {
 		try {
@@ -85,8 +85,9 @@ public class BackupManager {
 	 * getFileName for the Item class
 	 * 
 	 * @param backupFile - an int representing an index in the fileList array
-   *
-   * @return String - the backupFile corresponding to the input of the index inputted by the user
+	 *
+	 * @return String - the backupFile corresponding to the input of the index
+	 *         inputted by the user
 	 */
 	public static String getFileName(int backupFile) {
 		String[] fileList = getAllFiles();

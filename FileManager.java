@@ -48,7 +48,7 @@ public class FileManager {
 	 * addItem method to add an item to the inventory with user input
 	 * 
 	 * @param i - the item to add to the inventory
-   * @throws IOException
+	 * @throws IOException
 	 */
 	public static void addItem(Item i) throws IOException {
 		inventory.add(i);
@@ -66,9 +66,10 @@ public class FileManager {
 
 	/**
 	 * removeItem method to remove and return an item from the inventory
+	 * 
 	 * @param index - index of item to remove
 	 * @return item - item that was to be removed
-   * @throws IOException
+	 * @throws IOException
 	 */
 
 	public static Item removeItem(int index) throws IOException {
@@ -87,7 +88,9 @@ public class FileManager {
 	}
 
 	/**
-	 * pushInventory method to update the inventory text file with the current inventory
+	 * pushInventory method to update the inventory text file with the current
+	 * inventory
+	 * 
 	 * @throws IOException
 	 */
 	public static void pushInventory() throws IOException {
@@ -95,10 +98,11 @@ public class FileManager {
 	}
 
 	/**
-	 * pushInventory method to update the inventory text file with the current inventory
+	 * pushInventory method to update the inventory text file with the current
+	 * inventory
 	 * 
 	 * @param source - String of the old inventory to be updated
-   * @throws IOException
+	 * @throws IOException
 	 */
 	public static void pushInventory(String source) throws IOException {
 		try {
@@ -121,8 +125,9 @@ public class FileManager {
 
 	/**
 	 * pullInventory method to get the inventory data from the text file
-   * @throws IOException
-   * @throws FileNotFoundException
+	 * 
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
 	public static void pullInventory() throws FileNotFoundException, IOException {
 		try {
@@ -136,8 +141,8 @@ public class FileManager {
 	 * pullInventory method to get the inventory data from the text file
 	 * 
 	 * @param source - String of the inventory
-   * @throws IOException
-   * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
 	public static void pullInventory(String source) throws FileNotFoundException, IOException {
 		try {
@@ -211,7 +216,8 @@ public class FileManager {
 
 	/**
 	 * pullUsers method to get the user data from the text file
-   * @throws FileNotFoundException
+	 * 
+	 * @throws FileNotFoundException
 	 */
 	public static void pullUsers() throws FileNotFoundException {
 		try {
@@ -269,7 +275,7 @@ public class FileManager {
 	 * pushUsers method to push data into text file when the program is closed
 	 * 
 	 * @param source - the String which is the name of the file
-   * @throws IOException
+	 * @throws IOException
 	 */
 
 	public static void pushUsers() throws IOException {
@@ -313,12 +319,13 @@ public class FileManager {
 	}
 
 	/**
-	 * sortInventory sorts the Item inventory according to ID numbers or lexographically using quicksort
+	 * sortInventory sorts the Item inventory according to ID numbers or
+	 * lexographically using quicksort
 	 * 
 	 * @param ArrayList<Item> - ArrayList to be sorted
 	 * @param first           - first index
 	 * @param last            - last index
-   * @throws IOException
+	 * @throws IOException
 	 */
 	public static void sortInventory(ArrayList<Item> a, int first, int last) throws IOException {
 		if (a == null || a.size() == 0) {
@@ -380,13 +387,15 @@ public class FileManager {
 	}
 
 	/**
-	 * addUser method checks if the user's username has not already been taken and if it hasn't, it adds the user's username and password to the corresponding document and the * list
+	 * addUser method checks if the user's username has not already been taken and
+	 * if it hasn't, it adds the user's username and password to the corresponding
+	 * document and the * list
 	 *
 	 * @param username - String that is the username of the new user
 	 * @param password - String that is the password for the new user's username
-   * @throws IOException
-   * @throws FileNotFoundException
-   * @return true if a new user can be created, otherwise false 
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 * @return true if a new user can be created, otherwise false
 	 */
 	public static boolean addUser(String username, String password) throws FileNotFoundException, IOException {
 		for (User u : users) {
@@ -412,10 +421,11 @@ public class FileManager {
 	}
 
 	/**
-	 * findItem method to return the index of the item with the id selected by the user
+	 * findItem method to return the index of the item with the id selected by the
+	 * user
 	 *
 	 * @param id - String of the id the user wants
-   * @return index of item
+	 * @return index of item
 	 */
 	public static Item findItem(String id) {
 		for (Item i : inventory) {
@@ -427,7 +437,8 @@ public class FileManager {
 	}
 
 	/**
-	 * findUser method to return the user object with the same username as the one selected by the user
+	 * findUser method to return the user object with the same username as the one
+	 * selected by the user
 	 *
 	 * @param username - username selected by the user
 	 *
@@ -443,7 +454,8 @@ public class FileManager {
 	}
 
 	/**
-	 * findUserID method to return the user object with the same id as the one selected by the user
+	 * findUserID method to return the user object with the same id as the one
+	 * selected by the user
 	 *
 	 * @param id - String id selected by the user
 	 *

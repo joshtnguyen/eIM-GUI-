@@ -43,7 +43,6 @@ public class GUIManager extends JFrame implements ActionListener {
 	 * openWindow method to create the GUI
 	 * 
 	 * @param subTitle - the title of the frame
-   * @throws FileNotFoundException
 	 */
 	public void openWindow(String subTitle) throws FileNotFoundException {
 
@@ -161,7 +160,8 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * itemList() method to create the button objects onto the GUI to display all items
+	 * itemList() method to create the button objects onto the GUI to display all
+	 * items
 	 * 
 	 * @param page - the page number to start on
 	 */
@@ -419,8 +419,8 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * yourRentals() method to create the button objects onto the GUI param page -
+	 * 
 	 * @param page the page number of the backup to be uploaded
-   * @throws IOException
 	 */
 	public void yourRentals(int page) throws IOException {
 		if (windowType.equals("Your Rentals")) {
@@ -467,7 +467,6 @@ public class GUIManager extends JFrame implements ActionListener {
 	 * rentItem() method to create the button objects onto the GUI
 	 * 
 	 * @param page - the page number the item to remove is on
-   * @throws IOException
 	 */
 	public void rentItem(int page) throws IOException {
 		if (windowType.equals("Rent Item")) {
@@ -520,7 +519,6 @@ public class GUIManager extends JFrame implements ActionListener {
 	 * returnItem() method to create the button objects onto the GUI
 	 * 
 	 * @param page - the page number the item to return is on
-   * @throws IOException
 	 */
 	public void returnItem(int page) throws IOException {
 		if (windowType.equals("Return Item")) {
