@@ -75,6 +75,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	public void showLoginWindow() {
 		if (windowType.equals("Login")) {
 			container.setLayout(null);
+      buttons.add(new JButton("QUIT"));
 			userLabel.setBounds(50, 50, 100, 30);
 			passwordLabel.setBounds(50, 120, 100, 30);
 			userField.setBounds(150, 50, 150, 30);
@@ -83,6 +84,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			createAccount.setBounds(150, 170, 150, 30);
 			loginButton.setBounds(50, 220, 100, 30);
 			resetButton.setBounds(200, 220, 100, 30);
+      buttons.get(0).setBounds(50, 260, 250, 30);
 			container.add(userLabel);
 			container.add(passwordLabel);
 			container.add(userField);
@@ -91,10 +93,12 @@ public class GUIManager extends JFrame implements ActionListener {
 			container.add(createAccount);
 			container.add(loginButton);
 			container.add(resetButton);
+      container.add(buttons.get(0));
 			loginButton.addActionListener(this);
 			resetButton.addActionListener(this);
 			showPassword.addActionListener(this);
 			createAccount.addActionListener(this);
+      buttons.get(0).addActionListener(this);
 		}
 	}
 
@@ -133,7 +137,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
 			nButtons++;
 			yVal += yDer;
-			buttons.add(new JButton("Quit"));
+			buttons.add(new JButton("Sign Out"));
 			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
 			nButtons++;
 			yVal += yDer;
@@ -370,7 +374,7 @@ public class GUIManager extends JFrame implements ActionListener {
 			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
 			nButtons++;
 			yVal += yDer;
-			buttons.add(new JButton("Quit"));
+			buttons.add(new JButton("Sign Out"));
 			buttons.get(nButtons).setBounds(xVal, yVal, wVal, 30);
 			nButtons++;
 			yVal += yDer;
@@ -530,7 +534,9 @@ public class GUIManager extends JFrame implements ActionListener {
 
 			// LOGIN WINDOW
 			if (windowType.equals("Login")) {
-				if (e.getSource() == loginButton) {
+        if (e.getSource() == buttons.get(0)) {
+          System.exit(0);
+        } else if (e.getSource() == loginButton) {
 					String pass = "";
 					for (char c : passwordField.getPassword()) {
 						pass += c;
@@ -635,7 +641,12 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(6)) { // Quit
-					System.exit(0);
+					//System.exit(0);
+          GUIManager loginWindow = new GUIManager();
+					loginWindow.openWindow("Login");
+					loginWindow.showLoginWindow();
+          JOptionPane.showMessageDialog(this, "You've been signed out.");
+          setVisible(false);
 				}
 
 				// USER WINDOW
@@ -686,7 +697,12 @@ public class GUIManager extends JFrame implements ActionListener {
 				}
 
 				if (e.getSource() == buttons.get(5)) { // Quit
-					System.exit(0);
+					//System.exit(0);
+          GUIManager loginWindow = new GUIManager();
+					loginWindow.openWindow("Login");
+					loginWindow.showLoginWindow();
+          JOptionPane.showMessageDialog(this, "You've been signed out.");
+          setVisible(false);
 				}
 
 				// ITEM LIST WINDOW
