@@ -14,6 +14,9 @@ public class User {
 
 	/**
 	 * User Constructor with two String parameters
+   *
+   * @param username - the username of the new user
+   * @param password - the password of the user
 	 */
 	public User(String username, String password) {
 		userIDs++;
@@ -24,6 +27,10 @@ public class User {
 
 	/**
 	 * User Constructor with three String parameters
+   *
+   * @param username - the username of the new user
+   * @param password - the password of the user
+   * @param id - id of the user
 	 */
 	public User(String username, String password, String id) {
 		this.username = username;
@@ -44,6 +51,7 @@ public class User {
 	/**
 	 * findUser() method to take in a String and return which user object has the id
 	 * 
+   * @param userID
 	 * @return user object - null if doesn't exist and User object if it does
 	 */
 

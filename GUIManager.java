@@ -80,7 +80,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * showLoginWindow method to display the GUI
+	 * showLoginWindow method to display the GUI for the login window
 	 * 
 	 */
 	public void showLoginWindow() {
@@ -114,7 +114,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * adminLogin method to display the GUI
+	 * adminLogin method to display the GUI for the administrator panels
 	 */
 	public void adminLogin() {
 		if (windowType.equals("Admin Panel")) {
@@ -160,7 +160,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * itemList() method to create the button objects onto the GUI
+	 * itemList() method to create the button objects onto the GUI to display all items
 	 * 
 	 * @param page - the page number to start on
 	 */
@@ -375,7 +375,7 @@ public class GUIManager extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * userLogin method to display the GUI
+	 * userLogin method to display the GUI for the user panels
 	 */
 	public void userLogin() {
 		if (windowType.equals("User Panel")) {
@@ -418,7 +418,7 @@ public class GUIManager extends JFrame implements ActionListener {
 
 	/**
 	 * yourRentals() method to create the button objects onto the GUI param page -
-	 * the page number of the backup to be uploaded
+	 * @param page the page number of the backup to be uploaded
 	 */
 	public void yourRentals(int page) throws IOException {
 		if (windowType.equals("Your Rentals")) {

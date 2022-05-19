@@ -24,8 +24,6 @@ public class BackupManager {
 
 	/**
 	 * printViewableFiles() method to return all files in backup
-	 * 
-	 * @return fileList - list of all backup files
 	 */
 	public static void printViewableFiles() {
 		String[] fileList = getAllFiles();
@@ -44,6 +42,7 @@ public class BackupManager {
 	 * time
 	 * 
 	 * @return String - current time or null
+   * @throws IOException in case the input and output doesn't work
 	 */
 	public static String saveBackup() throws IOException {
 		try {
@@ -65,6 +64,8 @@ public class BackupManager {
 	 * @param fileName - name of the file to be deleted
 	 *
 	 * @return String - name of the file or null if there is no file
+   *
+   * @throws IOException in case input or output doesn't work
 	 */
 	public static String deleteBackup(String fileName) throws IOException {
 		try {
@@ -83,9 +84,9 @@ public class BackupManager {
 	/**
 	 * getFileName for the Item class
 	 * 
-	 * @param name        - name of the item
-	 * @param type        - type of the item
-	 * @param description - description of the condition of the item
+	 * @param backupFile - an int representing an index in the fileList array
+   *
+   * @return String - the backupFile corresponding to the input of the index inputted by the user
 	 */
 	public static String getFileName(int backupFile) {
 		String[] fileList = getAllFiles();

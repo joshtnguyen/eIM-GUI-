@@ -13,6 +13,9 @@ public class Main {
 	/**
 	 * Main method which pulls the inventory and users then initializes the login
 	 * window
+   *
+   * @throws IOException in case the input and output failes
+   * @throws FileNotFoundException in case file doesn't exist
 	 */
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 
@@ -30,6 +33,9 @@ public class Main {
 	 * username entered @ param password - the password entered
 	 * 
 	 * @return login - the user login
+   *
+   * @throws IOException in case the input and output failes
+   * @throws FileNotFoundException in case file doesn't exist
 	 */
 	public static String checkLogin(String username, String password) throws IOException, FileNotFoundException {
 		String login = "N/A";
