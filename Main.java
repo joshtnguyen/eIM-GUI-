@@ -3,7 +3,7 @@ import java.io.*;
 
 /**
  * 
- * @author Josh Nguyen
+ * @author Josh Nguyen, Hardeep Kainth
  *
  */
 

@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.*;
 
+/**
+* @author Josh Nguyen
+*/
 public class GUIManager extends JFrame implements ActionListener {
 
 	private String windowType;
