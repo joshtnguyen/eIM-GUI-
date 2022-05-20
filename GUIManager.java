@@ -78,6 +78,18 @@ public class GUIManager extends JFrame implements ActionListener {
 		}
 		sc.close();
 	}
+	
+	/**
+	 * setVisible - overriding method to show or hide the GUI window
+	 * 
+	 * @param show - the visibility of the GUI
+	 * @param message - the message the GUI shows on close
+	 */
+	public void setVisible(boolean show, String message) {
+		super.setVisible(show);
+		JOptionPane.showMessageDialog(this, message);
+		
+	}
 
 	/**
 	 * showLoginWindow method to display the GUI for the login window
@@ -686,11 +698,11 @@ public class GUIManager extends JFrame implements ActionListener {
 				if (e.getSource() == buttons.get(6)) { // Quit
 					// System.exit(0);
 					FileManager.sortByID();
-					setVisible(false);
+					setVisible(false, "You've been signed out.");
 					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
-					JOptionPane.showMessageDialog(this, "You've been signed out.");
+					//JOptionPane.showMessageDialog(this, "You've been signed out.");
 				}
 
 				// USER WINDOW
@@ -743,11 +755,11 @@ public class GUIManager extends JFrame implements ActionListener {
 				if (e.getSource() == buttons.get(5)) { // Quit
 					// System.exit(0);
 					FileManager.sortByID();
-					setVisible(false);
+					setVisible(false, "You've been signed out.");
 					GUIManager loginWindow = new GUIManager();
 					loginWindow.openWindow("Login");
 					loginWindow.showLoginWindow();
-					JOptionPane.showMessageDialog(this, "You've been signed out.");
+					//JOptionPane.showMessageDialog(this, "You've been signed out.");
 				}
 
 				// ITEM LIST WINDOW
